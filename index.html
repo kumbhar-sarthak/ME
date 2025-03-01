@@ -158,7 +158,7 @@
       <div class="md:hidden cursor-pointer" id="hamburger-menu">☰</div>
 
       <div class="hidden md:flex space-x-8 text-lg">
-        <a href="ME.html">Home</a>
+        <a href="index.html">Home</a>
         <a href="About.html">About</a>
         <a class="contact">Contact</a>
       </div>
@@ -230,7 +230,7 @@
 
     <div class="nav-overlay z-10" id="nav-overlay">
       <div class="close-menu" id="close-menu">&times;</div>
-      <a href="ME.html">Home</a>
+      <a href="index.html">Home</a>
       <a href="About.html">About</a>
     </div>
 
@@ -371,14 +371,6 @@
         .addEventListener("click", function () {
           document.getElementById("nav-overlay").classList.remove("active");
         });
-
-      let resizeTimer;
-      window.addEventListener("resize", () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-          location.reload();
-        }, 200);
-      });
 
       let contact = document.querySelector(".contact");
       let social = document.getElementById("social");
