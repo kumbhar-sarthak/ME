@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About - Me</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-dark: #0e0e0e;
+        --text-light: #ffffff;
+        --text-weight: 600;
+        --text-size: 4rem;
+      }
+
+      .display {
+        height: 100vh;
+        background-color: var(--bg-dark);
+        color: var(--text-light);
+        font-family: "Poppins", sans-serif;
+        font-weight: var(--text-weight);
+        font-size: var(--text-size);
+        padding: 2%;
+        line-height: 1.5em;
+        overflow: hidden;
+      }
+
+      .line {
+        display: block;
+        opacity: 0;
+        transform: translateY(50px);
+      }
+
+      @media screen and (max-width: 768px) {
+        .display {
+          font-size: 3rem;
+        }
+
+        @media screen and (max-width: 480px) {
+          .display {
+            font-size: 2.5rem;
+          }
+        }
+      }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+  </head>
+  <body>
+    <div class="display">
+      I am a second year Computer Science student, interested in technology and passionate about building them.
+    </div>
+
+    <script>
+      let text = new SplitType(".display", { types: " lines" });
+
+      gsap.fromTo(
+        text.lines,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 2,
+          stagger: 0.08,
+          ease: "power4.out",
+        }
+      );
+
+      let resizeTimer;
+      window.addEventListener("resize", () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          location.reload();
+        }, 200); 
+      });
+
+      let th = localStorage.getItem("theme");
+      if (th === "light") {
+        document.body.classList.add("light-mode");
+      }
+      
+    </script>
+  </body>
+</html>
