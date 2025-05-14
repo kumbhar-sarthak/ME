@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Let's Connect</title>
+  <link rel="icon" href="/public/fav.jpg" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+  <style>
+    :root {
+      --bg-dark: #0e0e0e;
+      --text-light: #ffffff;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+    }
+
+    #book {
+      position: relative;
+      background-color: rgb(59, 59, 59);
+      width: 10vw;
+      height: 4vw;
+      border-radius: 30px;
+      color: var(--text-light);
+      font-size: 1.5vw;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: color 0.3s ease;
+      z-index: 1;
+    }
+
+    #book::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 0%;
+      background-color: beige;
+      z-index: -1;
+      transition: height 0.3s ease;
+      border-radius: 30px;
+    }
+
+    #book:hover::before {
+      height: 100%;
+    }
+
+    #book:hover {
+      color: var(--bg-dark);
+    }
+
+    @media screen and (max-width: 600px) {
+      #time-box{
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="relative min-h-screen flex items-center justify-center">
+
+  <div class="absolute top-4 right-12 z-50">
+    <a href="./index.html" class="text-white text-lg font-semibold hover:underline">Home</a>
+  </div>
+
+  <div class="flex flex-col items-center justify-center text-center">
+    <h1 class="text-5xl sm:text-6xl lg:text-8xl font-bold mb-6">Let's Connect</h1>
+    <button id="book" class="mt-4">Book</button>
+  </div>
+
+
+  <div id="formModal"
+    class="fixed top-1/2 left-1/2 w-[90vw] max-w-md bg-white text-black p-6 rounded-xl shadow-2xl z-50 hidden transform -translate-x-1/2 -translate-y-1/2">
+    <h2 class="text-2xl font-bold mb-4">Connect With Us</h2>
+    <form class="space-y-4">
+      <input type="text" placeholder="Name" class="w-full border-b p-2 outline-none" />
+      <input type="email" placeholder="Email" class="w-full border-b p-2 outline-none" />
+      <input type="tel" placeholder="Mobile Number" class="w-full border-b p-2 outline-none" />
+      <button type="submit" class="mt-4 w-full bg-black text-white py-2 rounded-full">Submit</button>
+    </form>
+  </div>
+
+  <footer class="absolute bottom-0 left-0 p-4 w-full flex justify-between items-end">
+  <div id="time-box" class="border w-full sm:w-[15%] min-w-[180px] h-12 sm:h-[3vw] flex text-white">
+    <div class="flex w-full border-r items-center justify-center">Local Time</div>
+    <div id="time" class="flex items-center justify-center w-full font-medium"></div>
+  </div>
+
+  <div class="flex space-x-4  mb-2 absolute right-10">
+    <a href="mailto:sarthakkumbhar43@gmail.com" target="_blank" class="text-white text-xl hover:text-gray-300">
+      <i class="fas fa-envelope"></i>
+    </a>
+    <a href="https://github.com/kumbhar-sarthak" target="_blank" class="text-white text-xl hover:text-gray-300">
+      <i class="fab fa-github"></i>
+    </a>
+    <a href="https://x.com/sa75483" target="_blank" class="text-white text-xl hover:text-gray-300">
+      <i class="fab fa-twitter"></i>
+    </a>
+  </div>
+</footer>
+
+
+  <script>
+    const timeEle = document.getElementById("time");
+    const timeContainer = document.getElementById("time-container");
+
+    const options = {
+      timeZone: "Asia/Kolkata",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    };
+
+
+    const updateTime = () => {
+      const now = new Date();
+      const currentTime = now.toLocaleTimeString("en-IN", options);
+      timeEle.textContent = currentTime;
+    };
+
+    updateTime();
+    setInterval(updateTime, 60000);
+
+    const bookBtn = document.getElementById("book");
+    const modal = document.getElementById("formModal");
+
+    bookBtn.addEventListener("click", () => {
+      modal.classList.remove("hidden");
+      gsap.fromTo(
+        modal,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.5, ease: "power2.out" }
+      );
+    });
+
+    window.addEventListener("click", (e) => {
+      if (modal && !modal.contains(e.target) && e.target !== bookBtn) {
+        modal.classList.add("hidden");
+      }
+    });
+  </script>
+</body>
+
+</html>
