@@ -59,10 +59,11 @@
     }
 
     @media screen and (max-width: 650px) {
-      #time-box{
+      #time-box {
         display: none;
       }
-      #book{
+
+      #book {
         width: 30vw;
         height: 10vw;
         font-size: 4vw;
@@ -70,7 +71,7 @@
     }
 
     @media screen and (max-width: 400px) {
-      #book{
+      #book {
         width: 30vw;
         height: 10vw;
         font-size: 3vw;
@@ -80,47 +81,38 @@
 </head>
 
 <body class="relative min-h-screen flex items-center justify-center">
-
   <div class="absolute top-4 right-12 z-50">
     <a href="./index.html" class="text-white text-lg font-semibold hover:underline">Home</a>
   </div>
 
   <div class="flex flex-col items-center justify-center text-center">
-    <h1 class="text-5xl sm:text-6xl lg:text-8xl font-bold mb-6">Let's Connect</h1>
-    <button id="book" class="mt-4">Book</button>
-  </div>
-
-
-  <div id="formModal"
-    class="fixed top-1/2 left-1/2 w-[90vw] max-w-md bg-white text-black p-6 rounded-xl shadow-2xl z-50 hidden transform -translate-x-1/2 -translate-y-1/2">
-    <h2 class="text-2xl font-bold mb-4">Connect With Us</h2>
-    <form class="space-y-4">
-      <input type="text" placeholder="Name" class="w-full border-b p-2 outline-none" />
-      <input type="email" placeholder="Email" class="w-full border-b p-2 outline-none" />
-      <input type="tel" placeholder="Mobile Number" class="w-full border-b p-2 outline-none" />
-      <button type="submit" class="mt-4 w-full bg-black text-white py-2 rounded-full">Submit</button>
-    </form>
+    <h1 class="text-5xl sm:text-6xl lg:text-8xl font-bold mb-6">
+      Let's Connect
+    </h1>
+    <button id="book" class="mt-4" data-cal-link="sarthak-kumbhar-uoefw3/30min" data-cal-namespace="30min"
+      data-cal-config='{"layout":"month_view"}'>Book</button>
   </div>
 
   <footer class="absolute bottom-0 left-0 p-4 w-full flex justify-between items-end">
-  <div id="time-box" class="border w-full sm:w-[15%] min-w-[180px] h-12 sm:h-[3vw] flex text-white">
-    <div class="flex w-full border-r items-center justify-center">Local Time</div>
-    <div id="time" class="flex items-center justify-center w-full font-medium"></div>
-  </div>
+    <div id="time-box" class="border w-full sm:w-[15%] min-w-[180px] h-12 sm:h-[3vw] flex text-white">
+      <div class="flex w-full border-r items-center justify-center">
+        Local Time
+      </div>
+      <div id="time" class="flex items-center justify-center w-full font-medium"></div>
+    </div>
 
-  <div class="flex space-x-4  mb-2 absolute right-10">
-    <a href="mailto:sarthakkumbhar43@gmail.com" target="_blank" class="text-white text-xl hover:text-gray-300">
-      <i class="fas fa-envelope"></i>
-    </a>
-    <a href="https://github.com/kumbhar-sarthak" target="_blank" class="text-white text-xl hover:text-gray-300">
-      <i class="fab fa-github"></i>
-    </a>
-    <a href="https://x.com/sa75483" target="_blank" class="text-white text-xl hover:text-gray-300">
-      <i class="fab fa-twitter"></i>
-    </a>
-  </div>
-</footer>
-
+    <div class="flex space-x-4 mb-2 absolute right-10">
+      <a href="mailto:sarthakkumbhar43@gmail.com" target="_blank" class="text-white text-xl hover:text-gray-300">
+        <i class="fas fa-envelope"></i>
+      </a>
+      <a href="https://github.com/kumbhar-sarthak" target="_blank" class="text-white text-xl hover:text-gray-300">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="https://x.com/sa75483" target="_blank" class="text-white text-xl hover:text-gray-300">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </div>
+  </footer>
 
   <script>
     const timeEle = document.getElementById("time");
@@ -133,7 +125,6 @@
       hour12: false,
     };
 
-
     const updateTime = () => {
       const now = new Date();
       const currentTime = now.toLocaleTimeString("en-IN", options);
@@ -145,6 +136,7 @@
 
     const bookBtn = document.getElementById("book");
     const modal = document.getElementById("formModal");
+    const closeModelBtn = document.getElementById("closeModal");
 
     bookBtn.addEventListener("click", () => {
       modal.classList.remove("hidden");
@@ -155,12 +147,28 @@
       );
     });
 
+    closeModelBtn.addEventListener("click", () => {
+      modal.classList.add("hidden");
+      gsap.fromTo(
+        modal,
+        { opacity: 1 },
+        { opacity: 0, duration: 0.5, ease: "power3.out" }
+      );
+    });
+
     window.addEventListener("click", (e) => {
       if (modal && !modal.contains(e.target) && e.target !== bookBtn) {
         modal.classList.add("hidden");
       }
     });
   </script>
+
+  <script type="text/javascript">
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+    Cal("init", "30min", { origin: "https://cal.com" });
+    Cal.ns["30min"]("ui", { "hideEventTypeDetails": false, "layout": "month_view" });
+  </script>
+
 </body>
 
 </html>
