@@ -9,6 +9,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
     :root {
       --bg-dark: #0e0e0e;
@@ -58,6 +59,22 @@
       color: var(--bg-dark);
     }
 
+    .group {
+      visibility: hidden;
+    }
+
+    .hidden-box {
+      transform: scaleX(0);
+      transform-origin: left;
+      opacity: 0;
+      transition: transform 1s ease, opacity 0.4s ease;
+    }
+
+    .show-box {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+
     @media screen and (max-width: 650px) {
       #time-box {
         display: none;
@@ -81,11 +98,16 @@
 </head>
 
 <body class="relative min-h-screen flex items-center justify-center">
-  <div class="absolute top-4 right-12 z-50">
+
+  <div id="matrix-wrapper" class="absolute w-full h-full z-999">
+    <div id="matrix" class="grid w-full h-full relative"></div>
+  </div>
+
+  <div class="absolute top-4 right-12 z-50 group">
     <a href="./index.html" class="text-white text-lg font-semibold hover:underline">Home</a>
   </div>
 
-  <div class="flex flex-col items-center justify-center text-center">
+  <div class="flex flex-col items-center justify-center text-center group">
     <h1 class="text-5xl sm:text-6xl lg:text-8xl font-bold mb-6">
       Let's Connect
     </h1>
@@ -93,7 +115,7 @@
       data-cal-config='{"layout":"month_view"}'>Book</button>
   </div>
 
-  <footer class="absolute bottom-0 left-0 p-4 w-full flex justify-between items-end">
+  <footer class="absolute bottom-0 left-0 p-4 w-full flex justify-between items-end group">
     <div id="time-box" class="border w-full sm:w-[15%] min-w-[180px] h-12 sm:h-[3vw] flex text-white">
       <div class="flex w-full border-r items-center justify-center">
         Local Time
@@ -167,6 +189,50 @@
     (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
     Cal("init", "30min", { origin: "https://cal.com" });
     Cal.ns["30min"]("ui", { "hideEventTypeDetails": false, "layout": "month_view" });
+  </script>
+
+  <script>
+    const rows = 5;
+    const cols = 7;
+    const total = rows * cols;
+
+    const $container = $('#matrix');
+    $container.css({
+      'grid-template-columns': `repeat(${cols}, 1fr)`,
+      'grid-template-rows': `repeat(${rows}, 1fr)`
+    });
+
+    for (let i = 0; i < total; i++) {
+      const $wrapper = $('<div class="border border-[#272727] relative overflow-hidden"></div>');
+      const $overlay = $('<div class="hidden-box absolute inset-0 bg-[#e64a19]"></div>');
+      $wrapper.append($overlay);
+      $container.append($wrapper);
+    }
+
+    const $boxes = $('#matrix > div');
+
+    const indices = Array.from({ length: total }, (_, i) => i);
+    for (let i = indices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [indices[i], indices[j]] = [indices[j], indices[i]];
+    }
+
+    indices.forEach((index, i) => {
+      const $overlay = $boxes.eq(index).find('div');
+      setTimeout(() => {
+        $overlay.addClass('show-box');
+      }, i * 100);
+    });
+
+
+    window.addEventListener("DOMContentLoaded", () => {
+      setTimeout(() => {
+        document.getElementById('matrix-wrapper').style.visibility = 'hidden';
+        document.querySelectorAll('.group').forEach((e) => {
+          e.style.visibility = 'visible';
+        })
+      }, 2300)
+    })
   </script>
 
 </body>
