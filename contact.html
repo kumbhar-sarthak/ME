@@ -192,11 +192,15 @@
   </script>
 
   <script>
-    const rows = 5;
-    const cols = 7;
-    const total = rows * cols;
+  let rows = 5;
+  let cols = 7;
+  let total = rows * cols;
 
-    const $container = $('#matrix');
+  const $container = $('#matrix');
+
+  function buildGrid() {
+    total = rows * cols;
+    $container.empty();
     $container.css({
       'grid-template-columns': `repeat(${cols}, 1fr)`,
       'grid-template-rows': `repeat(${rows}, 1fr)`
@@ -204,36 +208,64 @@
 
     for (let i = 0; i < total; i++) {
       const $wrapper = $('<div class="border border-[#272727] relative overflow-hidden"></div>');
-      const $overlay = $('<div class="hidden-box absolute inset-0 bg-[#e64a19]"></div>');
+      const $overlay = $('<div class="hidden-box absolute inset-0 bg-[#750E21]"></div>');
       $wrapper.append($overlay);
       $container.append($wrapper);
     }
 
     const $boxes = $('#matrix > div');
-
     const indices = Array.from({ length: total }, (_, i) => i);
+
     for (let i = indices.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [indices[i], indices[j]] = [indices[j], indices[i]];
+    }
+
+    let counter = 100;
+    if (window.innerWidth < 500) {
+      counter = 50;
+    } else if (window.innerWidth < 800) {
+      counter = 70;
     }
 
     indices.forEach((index, i) => {
       const $overlay = $boxes.eq(index).find('div');
       setTimeout(() => {
         $overlay.addClass('show-box');
-      }, i * 100);
+      }, i * counter);
     });
+  }
 
+  function updateLayout() {
+    const width = window.innerWidth;
+    if (width < 500) {
+      rows = 12;
+      cols = 6;
+    } else if (width < 800) {
+      rows = 8;
+      cols = 7;
+    } else {
+      rows = 5;
+      cols = 7;
+    }
+    buildGrid();
+  }
 
-    window.addEventListener("DOMContentLoaded", () => {
-      setTimeout(() => {
-        document.getElementById('matrix-wrapper').style.visibility = 'hidden';
-        document.querySelectorAll('.group').forEach((e) => {
-          e.style.visibility = 'visible';
-        })
-      }, 2300)
-    })
-  </script>
+  window.addEventListener("DOMContentLoaded", () => {
+    updateLayout();
+    setTimeout(() => {
+      document.getElementById('matrix-wrapper').style.visibility = 'hidden';
+      document.querySelectorAll('.group').forEach((e) => {
+        e.style.visibility = 'visible';
+      });
+    }, 2300);
+  });
+
+  window.addEventListener("resize", () => {
+    updateLayout();
+  });
+</script>
+
 
 </body>
 

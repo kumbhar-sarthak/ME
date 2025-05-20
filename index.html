@@ -314,25 +314,13 @@
       });
   </script>
   <script>
-    const rows = 5;
-    const cols = 7;
-    const total = rows * cols;
+    let rows = 5;
+    let cols = 7;
+    let total = rows * cols;
 
-    const $container = $('#matrix');
-    $container.css({
-      'grid-template-columns': `repeat(${cols}, 1fr)`,
-      'grid-template-rows': `repeat(${rows}, 1fr)`
-    });
+    const $container = $("#matrix");
 
-    for (let i = 0; i < total; i++) {
-      const $wrapper = $('<div class="border border-[#272727] relative overflow-hidden"></div>');
-      const $overlay = $('<div class="hidden-box absolute  inset-0 bg-[#CF0F47]"></div>');
-      $wrapper.append($overlay);
-      $container.append($wrapper);
-    }
-
-    const $boxes = $('#matrix > div');
-
+    // this suffle function is used to shuffle the indices of the boxes so the random boxes are shown
     function shuffle(array) {
       for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -341,24 +329,74 @@
       return array;
     }
 
-    const indices = Array.from({ length: $boxes.length }, (_, i) => i);
-    const shuffledIndices = shuffle(indices);
+    function buildGrid() {
+      total = rows * cols;
+      $container.empty();
 
-    shuffledIndices.forEach((index, i) => {
-      const $overlay = $boxes.eq(index).find('div');
-      setTimeout(() => {
-        $overlay.slideDown(400);
-      }, i * 100);
-    });
+      $container.css({
+        "grid-template-columns": `repeat(${cols}, 1fr)`,
+        "grid-template-rows": `repeat(${rows}, 1fr)`,
+      });
+
+      for (let i = 0; i < total; i++) {
+        const $wrapper = $(
+          '<div class="border border-[#272727] relative overflow-hidden"></div>'
+        );
+        const $overlay = $(
+          '<div class="hidden-box absolute inset-0 bg-[#03346E] hidden"></div>'
+        );
+        $wrapper.append($overlay);
+        $container.append($wrapper);
+      }
+
+      const $boxes = $("#matrix > div");
+      const indices = shuffle([...Array($boxes.length).keys()]); // collects the indices
+
+      let counter = 100;
+      if (window.innerWidth < 500) {
+        counter = 50;
+      } else if (window.innerWidth < 800) {
+        counter = 70;
+      }
+
+      indices.forEach((index, i) => {
+        const $overlay = $boxes.eq(index).find("div");
+        setTimeout(() => {
+          $overlay.removeClass("hidden").slideDown(400);
+        }, i * counter);
+      }); // apply animation to show the boxes
+    }
+
+    // for display perfect square boxes on different screen sizes
+    function updateLayout() {
+      const width = window.innerWidth;
+      if (width < 500) {
+        rows = 12;
+        cols = 6;
+      } else if (width < 800) {
+        rows = 8;
+        cols = 7;
+      } else {
+        rows = 5;
+        cols = 7;
+      }
+      buildGrid();
+    }
 
     window.addEventListener("DOMContentLoaded", () => {
+      updateLayout();
+
       setTimeout(() => {
-        document.getElementById('matrix-wrapper').style.visibility = 'hidden';
-        document.querySelectorAll('.group').forEach((e) => {
-          e.style.visibility = 'visible';
-        })
-      }, 2300)
-    })
+        document.getElementById("matrix-wrapper").style.visibility = "hidden";
+        document.querySelectorAll(".group").forEach((e) => {
+          e.style.visibility = "visible";
+        });
+      }, 2300);
+    });
+
+    window.addEventListener("resize", () => {
+      updateLayout();
+    });
   </script>
 </body>
 
