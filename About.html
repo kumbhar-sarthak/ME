@@ -19,6 +19,14 @@
         --text-size: 4rem;
       }
 
+      .display {
+        scrollbar-width: none;
+        -ms-overflow-style: none; 
+      }
+      .display::-webkit-scrollbar {
+        display: none; 
+      }
+
       .light-mode {
         --bg-dark: #ffffff;
         --text-light: #000000;
@@ -42,14 +50,33 @@
         transform: translateY(50px);
       }
 
+      .bit-more-about-me{
+        display: block;
+        font-size: 1vw;
+        color: var(--text-light);
+        opacity: 0.8;
+        line-height: 2;
+        margin-top: 2rem;
+        padding: 2vw;
+      }
+
       @media screen and (max-width: 768px) {
         .display {
           font-size: 3rem;
         }
 
+        .bit-more-about-me{
+          font-size: 2vw;
+          padding: 4vw;
+        }
+
         @media screen and (max-width: 480px) {
           .display {
             font-size: 2.5rem;
+          }
+          .bit-more-about-me{
+            font-size: 4vw;
+            padding: 5vw;
           }
         }
       }
@@ -59,12 +86,19 @@
     <script src="https://unpkg.com/split-type"></script>
   </head>
   <body>
-    <div class="display">
-      I am a second year Computer Science student, interested in technology and passionate about building them.
+    <div class="display min-h-[100dvh] overflow-y-scroll">
+      <span class="display-title">
+        I am Devloper and CS Undergrad, Building Project with Creative Mind and Becoming Problem Solver.
+      </span>
+      <span class="bit-more-about-me font-normal ">
+        Understanding Core fundamentals of Computer Science and Software Development.
+        helps me to understand how things works. <br>
+        Now, I am exploring Computer security and Web. Looking opportunities to work on real world projects. <br><a href="index.html" class="hover:underline float-right ">Home</a>
+      </span>
     </div>
 
     <script>
-      let text = new SplitType(".display", { types: " lines" });
+      let text = new SplitType(".display-title", { types: " lines" });
 
       gsap.fromTo(
         text.lines,
