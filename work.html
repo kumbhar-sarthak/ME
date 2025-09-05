@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Showcase Slider</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-black text-white flex items-center justify-center min-h-screen"
+  >
+    <div
+      class="scrollbar-hide w-full h-full p-6 flex flex-wrap justify-start gap-20"
+    >
+      <div class="w-[400px] h-[400px] border border-white border-opacity-10">
+        <div class="w-full h-1/2 bg-[#222222]">
+          <video autoplay muted loop class="w-full h-full object-cover">
+            <source
+              src="https://res.cloudinary.com/djo8ngr4y/video/upload/v1757074082/p1_wzh2nm.mp4"
+            />
+          </video>
+        </div>
+        <div class="w-full h-1/2 p-4 relative">
+          <h1 class="text-3xl font-medium">FitPro</h1>
+          <h3 class="mt-2 text-[10x] ml-1 text-gray-50">
+            Fitness site for brand increasing there users, clean and neat ui
+            experience.
+          </h3>
+          <h1 class="font-medium text-4xl absolute bottom-5 right-5">1.</h1>
+        </div>
+      </div>
+      <div class="w-[400px] h-[400px] border border-white border-opacity-10">
+        <div class="w-full h-1/2 bg-[#222222]">
+          <video autoplay muted loop class="w-full h-full object-cover">
+            <source
+              src="https://res.cloudinary.com/djo8ngr4y/video/upload/v1757075003/p2_axejnv.mp4"
+            />
+          </video>
+        </div>
+        <div class="w-full h-1/2 p-4 relative">
+          <h1 class="text-3xl font-medium">Boating</h1>
+          <h3 class="mt-2 text-[10x] ml-1 text-gray-50">
+            Simple and Minimal Landing Page for intercity boat travel in Itely.
+          </h3>
+          <h1 class="font-medium text-4xl absolute bottom-5 right-5">2.</h1>
+        </div>
+      </div>
+      <div class="w-[400px] h-[400px] border border-white border-opacity-10">
+        <div
+          class="w-full h-1/2 bg-[url('./public/Medilink.png')] bg-cover bg-center"
+        ></div>
+        <div class="w-full h-1/2 p-4 relative">
+          <h1 class="text-3xl font-medium">Medilink</h1>
+          <h3 class="mt-2 text-[10x] ml-1 text-gray-50">
+            Self-trained Ai model to automate the 3d model making, primarly for
+            medical students helps in anatomy purposes.
+          </h3>
+          <h1 class="font-medium text-4xl absolute bottom-5 right-5">3.</h1>
+        </div>
+      </div>
+      <div class="w-[400px] h-[400px] border border-white border-opacity-10">
+        <div
+          class="w-full h-1/2 bg-[url(https://images.pexels.com/photos/6963017/pexels-photo-6963017.jpeg)] bg-cover bg-center"
+        ></div>
+        <div class="w-full h-1/2 p-4 relative">
+          <h1 class="text-3xl font-medium">Expense Tracker</h1>
+          <h3 class="mt-2 text-[10x] ml-1 text-gray-50">
+            Simple Golang Project that helps peoples manages there expenses.
+          </h3>
+          <h1 class="font-medium text-4xl absolute bottom-5 right-5">4.</h1>
+        </div>
+      </div>
+      <div class="w-[400px] h-[400px] border border-white border-opacity-10">
+        <div class="w-full h-1/2 bg-[#222222]">
+          <video autoplay muted loop class="w-full h-full object-cover">
+            <source
+              src="https://res.cloudinary.com/djo8ngr4y/video/upload/v1757076277/Untitled_video_-_Made_with_Clipchamp_2_bto6xy.mp4"
+            />
+          </video>
+        </div>
+        <div class="w-full h-1/2 p-4 relative">
+          <h1 class="text-3xl font-medium">TravelX</h1>
+          <h3 class="mt-2 text-[10x] ml-1 text-gray-50">
+            Adventure Company Website, showcasing there online presence.
+          </h3>
+          <h1 class="font-medium text-4xl absolute bottom-5 right-5">5.</h1>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
