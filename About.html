@@ -38,6 +38,22 @@
         overflow: hidden;
       }
 
+      .group {
+        visibility: hidden;
+      }
+
+      .hidden-box {
+        transform: scaleX(0);
+        transform-origin: left;
+        opacity: 0;
+        transition: transform 1s ease, opacity 0.4s ease;
+      }
+
+      .show-box {
+        transform: scaleX(1);
+        opacity: 1;
+      }
+
       .line {
         display: block;
         opacity: 0;
@@ -47,11 +63,15 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://unpkg.com/split-type"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
 
   <body>
     <div class="display min-h-[100dvh] overflow-y-scroll relative">
-      <div class="w-full h-full relative">
+      <div id="matrix-wrapper" class="absolute w-full h-full z-999">
+        <div id="matrix" class="grid w-full h-full relative"></div>
+      </div>
+      <div class="w-full h-full relative group">
         <div
           class="w-full bg-red-100 border border-[#272727] absolute top-6 md:top-20"
         ></div>
@@ -77,8 +97,8 @@
               Hello, I'm student @D. Y. Patil University pursuing my bachelor's
               degree in Computer Science and Engineering, with that also doing
               my minor's in data science. Along with my academics I truly
-              building products and providing freelance services to clients.
-              To know more about me look my projects and connect with me. 🙂
+              building products and providing freelance services to clients. To
+              know more about me look my projects and connect with me. 🙂
             </p>
 
             <div class="flex space-x-4 absolute bottom-5">
@@ -122,6 +142,85 @@
       if (th === "light") {
         document.body.classList.add("light-mode");
       }
+    </script>
+
+    <script>
+      let rows = 5;
+      let cols = 7;
+      let total = rows * cols;
+
+      const $container = $("#matrix");
+
+      function buildGrid() {
+        total = rows * cols;
+        $container.empty();
+        $container.css({
+          "grid-template-columns": `repeat(${cols}, 1fr)`,
+          "grid-template-rows": `repeat(${rows}, 1fr)`,
+        });
+
+        for (let i = 0; i < total; i++) {
+          const $wrapper = $(
+            '<div class="border border-[#272727] relative overflow-hidden"></div>'
+          );
+          const $overlay = $(
+            '<div class="hidden-box absolute inset-0 bg-[#5F9598]"></div>'
+          );
+          $wrapper.append($overlay);
+          $container.append($wrapper);
+        }
+
+        const $boxes = $("#matrix > div");
+        const indices = Array.from({ length: total }, (_, i) => i);
+
+        for (let i = indices.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [indices[i], indices[j]] = [indices[j], indices[i]];
+        }
+
+        let counter = 100;
+        if (window.innerWidth < 500) {
+          counter = 50;
+        } else if (window.innerWidth < 800) {
+          counter = 70;
+        }
+
+        indices.forEach((index, i) => {
+          const $overlay = $boxes.eq(index).find("div");
+          setTimeout(() => {
+            $overlay.addClass("show-box");
+          }, i * counter);
+        });
+      }
+
+      function updateLayout() {
+        const width = window.innerWidth;
+        if (width < 500) {
+          rows = 12;
+          cols = 6;
+        } else if (width < 800) {
+          rows = 8;
+          cols = 7;
+        } else {
+          rows = 5;
+          cols = 7;
+        }
+        buildGrid();
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        updateLayout();
+        setTimeout(() => {
+          document.getElementById("matrix-wrapper").style.visibility = "hidden";
+          document.querySelectorAll(".group").forEach((e) => {
+            e.style.visibility = "visible";
+          });
+        }, 2300);
+      });
+
+      window.addEventListener("resize", () => {
+        updateLayout();
+      });
     </script>
   </body>
 </html>
