@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Preview</title>
+    <style>
+      :root {
+        --bg-dark: #0e0e0e;
+        --line: #272727;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        min-height: 100%;
+        margin: 0;
+      }
+
+      body {
+        min-height: 100dvh;
+        background: var(--bg-dark);
+        font-family: Arial, sans-serif;
+        user-select: none;
+      }
+
+      .page {
+        position: relative;
+        min-height: 100dvh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+        overflow: hidden;
+      }
+
+      .preview-frame {
+        position: relative;
+        z-index: 1;
+        width: min(86vw, 980px);
+        aspect-ratio: 16 / 9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .border-line {
+        position: fixed;
+        background: var(--line);
+        pointer-events: none;
+        z-index: 2;
+      }
+
+      .border-line.top,
+      .border-line.bottom {
+        left: 0;
+        width: 100%;
+        height: 1px;
+      }
+
+      .border-line.top {
+        top: var(--frame-top, 50%);
+      }
+
+      .border-line.bottom {
+        top: var(--frame-bottom, 50%);
+      }
+
+      .border-line.left,
+      .border-line.right {
+        top: 0;
+        height: 100%;
+        width: 1px;
+      }
+
+      .border-line.left {
+        left: var(--frame-left, 50%);
+      }
+
+      .border-line.right {
+        left: var(--frame-right, 50%);
+      }
+
+      video {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        background: #111111;
+      }
+
+      @media (max-width: 700px) {
+        .page {
+          padding: 1rem;
+        }
+
+        .preview-frame {
+          width: calc(100vw - 2rem);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <div class="border-line top" aria-hidden="true"></div>
+      <div class="border-line bottom" aria-hidden="true"></div>
+      <div class="border-line left" aria-hidden="true"></div>
+      <div class="border-line right" aria-hidden="true"></div>
+
+      <div class="preview-frame">
+        <video id="preview-video" autoplay muted loop playsinline controls></video>
+      </div>
+    </main>
+
+    <script>
+      const defaultVideo =
+        "https://res.cloudinary.com/djo8ngr4y/video/upload/v1757076277/Untitled_video_-_Made_with_Clipchamp_2_bto6xy.mp4";
+
+      const params = new URLSearchParams(window.location.search);
+      const requestedVideo = params.get("video") || params.get("src");
+      const video = document.getElementById("preview-video");
+      const frame = document.querySelector(".preview-frame");
+
+      function getCloudinaryVideoUrl(url) {
+        if (!url) {
+          return defaultVideo;
+        }
+
+        try {
+          const parsedUrl = new URL(url);
+          const isCloudinary =
+            parsedUrl.protocol === "https:" &&
+            parsedUrl.hostname.endsWith("cloudinary.com");
+
+          return isCloudinary ? parsedUrl.href : defaultVideo;
+        } catch {
+          return defaultVideo;
+        }
+      }
+
+      function positionBorderLines() {
+        const rect = frame.getBoundingClientRect();
+
+        document.documentElement.style.setProperty(
+          "--frame-top",
+          `${rect.top}px`
+        );
+        document.documentElement.style.setProperty(
+          "--frame-bottom",
+          `${rect.bottom}px`
+        );
+        document.documentElement.style.setProperty(
+          "--frame-left",
+          `${rect.left}px`
+        );
+        document.documentElement.style.setProperty(
+          "--frame-right",
+          `${rect.right}px`
+        );
+      }
+
+      video.src = getCloudinaryVideoUrl(requestedVideo);
+      video.play().catch(() => {});
+      positionBorderLines();
+      window.addEventListener("resize", positionBorderLines);
+    </script>
+  </body>
+</html>

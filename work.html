@@ -1,220 +1,182 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project Showcase Slider</title>
+    <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=general-sans@400,700,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=author@400,700,900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lenis@1.3.4/dist/lenis.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
     <style>
-      :root {
-        --bg-dark: #0e0e0e;
-        --text-light: #ffffff;
-        --text-weight: 400;
-        --text-size: 4rem;
+      .border-color {
+        --tw-border-opacity: 1;
+        border-color: rgb(39 39 39 / var(--tw-border-opacity, 1));
       }
-
-      body {
-        user-select: none;
-      }
-
-      .scrollbar-hide::-webkit-scrollbar {
-        display: none;
-      }
-
-      .scrollbar-hide {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-      .display {
-        height: 100dvh;
-        background-color: var(--bg-dark);
-        color: var(--text-light);
-        font-family: "Satoshi", sans-serif;
-        font-weight: var(--text-weight);
-        line-height: 1.5em;
-        overflow: hidden;
-      }
-
-      .group {
-        visibility: hidden;
-      }
-
-      .hidden-box {
-        transform: scaleX(0);
-        transform-origin: left;
-        opacity: 0;
-        transition: transform 1s ease, opacity 0.4s ease;
-      }
-
-      .show-box {
-        transform: scaleX(1);
-        opacity: 1;
+      .text-color {
+        --tw-border-opacity: 1;
+        color: rgb(73 73 73 / var(--tw-border-opacity, 1));
       }
     </style>
   </head>
-  <body
-    class="display min-h-[100dvh] relative flex items-center justify-center"
-  >
-    <div id="matrix-wrapper" class="absolute w-full h-full z-999">
-      <div id="matrix" class="grid w-full h-full relative"></div>
-    </div>
-    <div
-      class="scrollbar-hide overflow-y-scroll w-full h-full p-6 flex flex-wrap justify-start gap-20 group"
+  <body>
+    <section
+      id="sec4"
+      class="w-full min-h-[100svh] bg-[#0e0e0e] text-white p-4 md:p-6 relative overflow-hidden"
     >
-      <div class="w-[400px] h-[400px] border border-white border-opacity-10">
-        <div class="w-full h-1/2 bg-[#222222]">
-          <video autoplay muted loop class="w-full h-full object-cover">
-            <source
-              src="https://res.cloudinary.com/djo8ngr4y/video/upload/v1757074082/p1_wzh2nm.mp4"
-            />
-          </video>
-        </div>
-        <div class="w-full h-1/2 p-4 relative">
-          <h1 class="text-3xl font-medium">FitPro</h1>
-          <h3 class="mt-2 text-[10x] ml-1 text-gray-50">
-            Fitness site for brand increasing there users, clean and neat ui
-            experience.
-          </h3>
-          <h1 class="font-medium text-4xl absolute bottom-5 right-5">1.</h1>
-        </div>
+      <div
+        id="project-info"
+        class="w-full absolute left-0 md:left-10 flex flex-row justify-between md:flex-col pl-6 pr-6 md:pl-0 md:pr-0"
+      >
+        <h1>Project that I'm worked on.</h1>
+        <span>Local Time - <span id="local-time">10:30</span></span>
       </div>
-      <div class="w-[400px] h-[400px] border border-white border-opacity-10">
-        <div class="w-full h-1/2 bg-[#222222]">
-          <video autoplay muted loop class="w-full h-full object-cover">
-            <source
-              src="https://res.cloudinary.com/djo8ngr4y/video/upload/v1757075003/p2_axejnv.mp4"
-            />
-          </video>
-        </div>
-        <div class="w-full h-1/2 p-4 relative">
-          <h1 class="text-3xl font-medium">Boating</h1>
-          <h3 class="mt-2 text-[10x] ml-1 text-gray-50">
-            Simple and Minimal Landing Page for intercity boat travel in Itely.
-          </h3>
-          <h1 class="font-medium text-4xl absolute bottom-5 right-5">2.</h1>
-        </div>
-      </div>
-      <div class="w-[400px] h-[400px] border border-white border-opacity-10">
+      <button
+        id="book-call"
+        type="button"
+        data-cal-link="sarthak-kumbhar-uoefw3/30min"
+        data-cal-namespace="30min"
+        data-cal-config='{"layout":"month_view"}'
+        class="group absolute right-5 text-white px-6 h-[50px] flex justify-center items-center font-semibold cursor-pointer rounded-full border border-white overflow-hidden transition-colors duration-300 hover:text-black"
+      >
+        <span
+          class="absolute left-0 bottom-0 w-full h-full bg-white translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0"
+        ></span>
+        <span class="relative z-10">Book call with me</span>
+      </button>
+      <div
+        id="project-container"
+        class="w-full h-auto absolute bottom-0 left-0 right-0 flex flex-col justify-end"
+      >
+        <a
+          href="https://projects-nu-puce.vercel.app/bloom/"
+          target="_blank"
+          class="w-full h-[40px] border-t border-b flex justify-between items-center pl-6 md:pl-12 pr-6 md:pr-12 hover:bg-white hover:text-black transition-all duration-200 text-sm md:text-base border-color"
+        >
+          <h1>Bloom - A clothing brand</h1>
+          <h1><i class="ri-arrow-right-line"></i></h1>
+        </a>
+        <a
+          href="https://projects-nu-puce.vercel.app/brokeragent"
+          target="_blank"
+          class="w-full h-[40px] border-b flex justify-between items-center pl-6 md:pl-12 pr-6 md:pr-12 hover:bg-white hover:text-black transition-all duration-200 text-sm md:text-base border-color"
+        >
+          <h1>brokeragent - a platform for real-esate</h1>
+          <h1><i class="ri-arrow-right-line"></i></h1>
+        </a>
+        <a
+          href="https://clinic360-eight.vercel.app/"
+          target="_blank"
+          class="w-full h-[40px] border-b flex justify-between items-center pl-6 md:pl-12 pr-6 md:pr-12 hover:bg-white hover:text-black transition-all duration-200 text-sm md:text-base border-color"
+        >
+          <h1>Clinic360</h1>
+          <h1><i class="ri-arrow-right-line"></i></h1>
+        </a>
+        <a
+          href="./preview.html?video=https%3A%2F%2Fres.cloudinary.com%2Fdjo8ngr4y%2Fvideo%2Fupload%2Fv1757074082%2Fp1_wzh2nm.mp4"
+          target="_blank"
+          class="w-full h-[40px] border-b flex justify-between items-center pl-6 md:pl-12 pr-6 md:pr-12 hover:bg-white hover:text-black transition-all duration-200 text-sm md:text-base border-color"
+        >
+          <h1>FitPro</h1>
+          <h1><i class="ri-arrow-right-line"></i></h1>
+        </a>
+        <a
+          href="./preview.html?video=https%3A%2F%2Fres.cloudinary.com%2Fdjo8ngr4y%2Fvideo%2Fupload%2Fv1757075003%2Fp2_axejnv.mp4"
+          target="_blank"
+          class="w-full h-[40px] border-b flex justify-between items-center pl-6 md:pl-12 pr-6 md:pr-12 hover:bg-white hover:text-black transition-all duration-200 text-sm md:text-base border-color"
+        >
+          <h1>Boating</h1>
+          <h1><i class="ri-arrow-right-line"></i></h1>
+        </a>
+        <a
+          href="./preview.html?video=https%3A%2F%2Fres.cloudinary.com%2Fdjo8ngr4y%2Fvideo%2Fupload%2Fv1757076277%2FUntitled_video_-_Made_with_Clipchamp_2_bto6xy.mp4"
+          target="_blank"
+          class="w-full h-[40px] border-b flex justify-between items-center pl-6 md:pl-12 pr-6 md:pr-12 hover:bg-white hover:text-black transition-all duration-200 text-sm md:text-base border-color"
+        >
+          <h1>TravelX - Adventure company</h1>
+          <h1><i class="ri-arrow-right-line"></i></h1>
+        </a>
         <div
-          class="w-full h-1/2 bg-[url('./public/Medilink.png')] bg-cover bg-center"
-        ></div>
-        <div class="w-full h-1/2 p-4 relative">
-          <h1 class="text-3xl font-medium">Medilink</h1>
-          <h3 class="mt-2 text-[10x] ml-1 text-gray-50">
-            Self-trained Ai model to automate the 3d model making, primarly for
-            medical students helps in anatomy purposes.
-          </h3>
-          <h1 class="font-medium text-4xl absolute bottom-5 right-5">3.</h1>
+          class="w-full h-[40px] flex justify-between items-center pl-6 md:pl-12 pr-6 md:pr-12 hover:bg-white hover:text-black transition-all duration-200 text-sm md:text-base border-color"
+        >
+          <h1>More</h1>
+          <h1><i class="ri-arrow-right-line"></i></h1>
         </div>
       </div>
-      <div class="w-[400px] h-[400px] border border-white border-opacity-10">
-        <div
-          class="w-full h-1/2 bg-[url(https://images.pexels.com/photos/6963017/pexels-photo-6963017.jpeg)] bg-cover bg-center"
-        ></div>
-        <div class="w-full h-1/2 p-4 relative">
-          <h1 class="text-3xl font-medium">Expense Tracker</h1>
-          <h3 class="mt-2 text-[10x] ml-1 text-gray-50">
-            Simple Golang Project that helps peoples manages there expenses.
-          </h3>
-          <h1 class="font-medium text-4xl absolute bottom-5 right-5">4.</h1>
-        </div>
-      </div>
-      <div class="w-[400px] h-[400px] border border-white border-opacity-10">
-        <div class="w-full h-1/2 bg-[#222222]">
-          <video autoplay muted loop class="w-full h-full object-cover">
-            <source
-              src="https://res.cloudinary.com/djo8ngr4y/video/upload/v1757076277/Untitled_video_-_Made_with_Clipchamp_2_bto6xy.mp4"
-            />
-          </video>
-        </div>
-        <div class="w-full h-1/2 p-4 relative">
-          <h1 class="text-3xl font-medium">TravelX</h1>
-          <h3 class="mt-2 text-[10x] ml-1 text-gray-50">
-            Adventure Company Website, showcasing there online presence.
-          </h3>
-          <h1 class="font-medium text-4xl absolute bottom-5 right-5">5.</h1>
-        </div>
-      </div>
-    </div>
+    </section>
 
     <script>
-      let rows = 5;
-      let cols = 7;
-      let total = rows * cols;
+      const ele = document.getElementById("project-container");
+      const info = document.getElementById("project-info");
 
-      const $container = $("#matrix");
+      function positionInfo() {
+        if (window.innerWidth < 760) {
+          const rect = ele.getBoundingClientRect();
 
-      function buildGrid() {
-        total = rows * cols;
-        $container.empty();
-        $container.css({
-          "grid-template-columns": `repeat(${cols}, 1fr)`,
-          "grid-template-rows": `repeat(${rows}, 1fr)`,
-        });
-
-        for (let i = 0; i < total; i++) {
-          const $wrapper = $(
-            '<div class="border border-[#272727] relative overflow-hidden"></div>'
-          );
-          const $overlay = $(
-            '<div class="hidden-box absolute inset-0 bg-[#412B6B]"></div>'
-          );
-          $wrapper.append($overlay);
-          $container.append($wrapper);
-        }
-
-        const $boxes = $("#matrix > div");
-        const indices = Array.from({ length: total }, (_, i) => i);
-
-        for (let i = indices.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [indices[i], indices[j]] = [indices[j], indices[i]];
-        }
-
-        let counter = 100;
-        if (window.innerWidth < 500) {
-          counter = 50;
-        } else if (window.innerWidth < 800) {
-          counter = 70;
-        }
-
-        indices.forEach((index, i) => {
-          const $overlay = $boxes.eq(index).find("div");
-          setTimeout(() => {
-            $overlay.addClass("show-box");
-          }, i * counter);
-        });
-      }
-
-      function updateLayout() {
-        const width = window.innerWidth;
-        if (width < 500) {
-          rows = 12;
-          cols = 6;
-        } else if (width < 800) {
-          rows = 8;
-          cols = 7;
+          info.children[0].style.width = "150px";
+          info.style.top = `${rect.y - info.offsetHeight - 10}px`;
+          info.style.alignItems = "end";
+          info.classList.add("text-color");
         } else {
-          rows = 5;
-          cols = 7;
+          info.children[0].style.width = "";
+          info.style.top = "";
+          info.style.alignItems = "";
+          info.classList.remove("text-color");
         }
-        buildGrid();
       }
 
-      window.addEventListener("DOMContentLoaded", () => {
-        updateLayout();
-        setTimeout(() => {
-          document.getElementById("matrix-wrapper").style.visibility = "hidden";
-          document.querySelectorAll(".group").forEach((e) => {
-            e.style.visibility = "visible";
-          });
-        }, 2300);
-      });
+      positionInfo();
 
-      window.addEventListener("resize", () => {
-        updateLayout();
+      window.addEventListener("resize", positionInfo);
+    </script>
+    <script type="text/javascript">
+      (function (C, A, L) {
+        let p = function (a, ar) {
+          a.q.push(ar);
+        };
+        let d = C.document;
+        C.Cal =
+          C.Cal ||
+          function () {
+            let cal = C.Cal;
+            let ar = arguments;
+            if (!cal.loaded) {
+              cal.ns = {};
+              cal.q = cal.q || [];
+              d.head.appendChild(d.createElement("script")).src = A;
+              cal.loaded = true;
+            }
+            if (ar[0] === L) {
+              const api = function () {
+                p(api, arguments);
+              };
+              const namespace = ar[1];
+              api.q = api.q || [];
+              if (typeof namespace === "string") {
+                cal.ns[namespace] = cal.ns[namespace] || api;
+                p(cal.ns[namespace], ar);
+                p(cal, ["initNamespace", namespace]);
+              } else p(cal, ar);
+              return;
+            }
+            p(cal, ar);
+          };
+      })(window, "https://app.cal.com/embed/embed.js", "init");
+      Cal("init", "30min", { origin: "https://cal.com" });
+      Cal.ns["30min"]("ui", {
+        hideEventTypeDetails: false,
+        layout: "month_view",
       });
     </script>
   </body>
