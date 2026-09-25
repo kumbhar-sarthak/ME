@@ -19,7 +19,49 @@
       href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
       rel="stylesheet"
     />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
+      .group {
+        visibility: hidden;
+      }
+
+      .display {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .display::-webkit-scrollbar {
+        display: none;
+      }
+
+      .display {
+        height: 100dvh;
+        background-color: var(--bg-dark);
+        color: var(--text-light);
+        font-family: "Satoshi", sans-serif;
+        font-weight: var(--text-weight);
+        line-height: 1.5em;
+        overflow: hidden;
+      }
+
+      .hidden-box {
+        transform: scaleX(0);
+        transform-origin: left;
+        opacity: 0;
+        transition:
+          transform 1s ease,
+          opacity 0.4s ease;
+      }
+
+      .show-box {
+        transform: scaleX(1);
+        opacity: 1;
+      }
+
+      .gp:hover .button-fill {
+        transform: translateY(0);
+      }
+
       .border-color {
         --tw-border-opacity: 1;
         border-color: rgb(39 39 39 / var(--tw-border-opacity, 1));
@@ -33,85 +75,92 @@
   <body>
     <section
       id="sec4"
-      class="w-full min-h-[100svh] bg-[#0e0e0e] text-white p-4 md:p-6 relative overflow-hidden"
+      class="display w-full min-h-[100dvh] bg-[#0e0e0e] text-white relative overflow-hidden"
     >
-      <div
-        id="project-info"
-        class="w-full absolute left-0 md:left-10 flex flex-row justify-between md:flex-col pl-6 pr-6 md:pl-0 md:pr-0"
-      >
-        <h1>Project that I'm worked on.</h1>
-        <span>Local Time - <span id="local-time">10:30</span></span>
+      <div id="matrix-wrapper" class="absolute w-full h-full z-[999]">
+        <div id="matrix" class="grid w-full h-full relative"></div>
       </div>
-      <button
-        id="book-call"
-        type="button"
-        data-cal-link="sarthak-kumbhar-uoefw3/30min"
-        data-cal-namespace="30min"
-        data-cal-config='{"layout":"month_view"}'
-        class="group absolute right-5 text-white px-6 h-[50px] flex justify-center items-center font-semibold cursor-pointer rounded-full border border-white overflow-hidden transition-colors duration-300 hover:text-black"
-      >
-        <span
-          class="absolute left-0 bottom-0 w-full h-full bg-white translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0"
-        ></span>
-        <span class="relative z-10">Book call with me</span>
-      </button>
-      <div
-        id="project-container"
-        class="w-full h-auto absolute bottom-0 left-0 right-0 flex flex-col justify-end"
-      >
-        <a
-          href="https://projects-nu-puce.vercel.app/bloom/"
-          target="_blank"
-          class="w-full h-[40px] border-t border-b flex justify-between items-center pl-6 md:pl-12 pr-6 md:pr-12 hover:bg-white hover:text-black transition-all duration-200 text-sm md:text-base border-color"
-        >
-          <h1>Bloom - A clothing brand</h1>
-          <h1><i class="ri-arrow-right-line"></i></h1>
-        </a>
-        <a
-          href="https://projects-nu-puce.vercel.app/brokeragent"
-          target="_blank"
-          class="w-full h-[40px] border-b flex justify-between items-center pl-6 md:pl-12 pr-6 md:pr-12 hover:bg-white hover:text-black transition-all duration-200 text-sm md:text-base border-color"
-        >
-          <h1>brokeragent - a platform for real-esate</h1>
-          <h1><i class="ri-arrow-right-line"></i></h1>
-        </a>
-        <a
-          href="https://clinic360-eight.vercel.app/"
-          target="_blank"
-          class="w-full h-[40px] border-b flex justify-between items-center pl-6 md:pl-12 pr-6 md:pr-12 hover:bg-white hover:text-black transition-all duration-200 text-sm md:text-base border-color"
-        >
-          <h1>Clinic360</h1>
-          <h1><i class="ri-arrow-right-line"></i></h1>
-        </a>
-        <a
-          href="./preview.html?video=https%3A%2F%2Fres.cloudinary.com%2Fdjo8ngr4y%2Fvideo%2Fupload%2Fv1757074082%2Fp1_wzh2nm.mp4"
-          target="_blank"
-          class="w-full h-[40px] border-b flex justify-between items-center pl-6 md:pl-12 pr-6 md:pr-12 hover:bg-white hover:text-black transition-all duration-200 text-sm md:text-base border-color"
-        >
-          <h1>FitPro</h1>
-          <h1><i class="ri-arrow-right-line"></i></h1>
-        </a>
-        <a
-          href="./preview.html?video=https%3A%2F%2Fres.cloudinary.com%2Fdjo8ngr4y%2Fvideo%2Fupload%2Fv1757075003%2Fp2_axejnv.mp4"
-          target="_blank"
-          class="w-full h-[40px] border-b flex justify-between items-center pl-6 md:pl-12 pr-6 md:pr-12 hover:bg-white hover:text-black transition-all duration-200 text-sm md:text-base border-color"
-        >
-          <h1>Boating</h1>
-          <h1><i class="ri-arrow-right-line"></i></h1>
-        </a>
-        <a
-          href="./preview.html?video=https%3A%2F%2Fres.cloudinary.com%2Fdjo8ngr4y%2Fvideo%2Fupload%2Fv1757076277%2FUntitled_video_-_Made_with_Clipchamp_2_bto6xy.mp4"
-          target="_blank"
-          class="w-full h-[40px] border-b flex justify-between items-center pl-6 md:pl-12 pr-6 md:pr-12 hover:bg-white hover:text-black transition-all duration-200 text-sm md:text-base border-color"
-        >
-          <h1>TravelX - Adventure company</h1>
-          <h1><i class="ri-arrow-right-line"></i></h1>
-        </a>
+      <div class="p-4 md:p-6 w-full h-full relative group">
         <div
-          class="w-full h-[40px] flex justify-between items-center pl-6 md:pl-12 pr-6 md:pr-12 hover:bg-white hover:text-black transition-all duration-200 text-sm md:text-base border-color"
+          id="project-info"
+          class="w-full absolute left-0 md:left-10 flex flex-row justify-between md:flex-col pl-6 pr-6 md:pl-0 md:pr-0"
         >
-          <h1>More</h1>
-          <h1><i class="ri-arrow-right-line"></i></h1>
+          <h1>Project that I'm worked on.</h1>
+          <span>Local Time - <span id="local-time">10:30</span></span>
+        </div>
+        <button
+          id="book-call"
+          type="button"
+          data-cal-link="sarthak-kumbhar-uoefw3/30min"
+          data-cal-namespace="30min"
+          data-cal-config='{"layout":"month_view"}'
+          class="gp absolute right-5 text-white px-6 h-[50px] flex justify-center items-center font-semibold cursor-pointer rounded-full border border-white overflow-hidden transition-colors duration-300 hover:text-black"
+        >
+          <span
+            class="button-fill absolute left-0 bottom-0 w-full h-full bg-white translate-y-full transition-transform duration-300 ease-out"
+          ></span>
+          <span class="relative z-10">Book call with me</span>
+        </button>
+        <div
+          id="project-container"
+          class="w-full h-auto absolute bottom-0 left-0 right-0 flex flex-col justify-end"
+        >
+          <a
+            href="https://projects-nu-puce.vercel.app/bloom/"
+            target="_blank"
+            class="w-full h-[40px] border-t border-b flex justify-between items-center pl-6 md:pl-12 pr-6 md:pr-12 hover:bg-white hover:text-black transition-all duration-200 text-sm md:text-base border-color"
+          >
+            <h1>Bloom - A clothing brand</h1>
+            <h1><i class="ri-arrow-right-line"></i></h1>
+          </a>
+          <a
+            href="https://projects-nu-puce.vercel.app/brokeragent"
+            target="_blank"
+            class="w-full h-[40px] border-b flex justify-between items-center pl-6 md:pl-12 pr-6 md:pr-12 hover:bg-white hover:text-black transition-all duration-200 text-sm md:text-base border-color"
+          >
+            <h1>brokeragent - a platform for real-esate</h1>
+            <h1><i class="ri-arrow-right-line"></i></h1>
+          </a>
+          <a
+            href="https://clinic360-eight.vercel.app/"
+            target="_blank"
+            class="w-full h-[40px] border-b flex justify-between items-center pl-6 md:pl-12 pr-6 md:pr-12 hover:bg-white hover:text-black transition-all duration-200 text-sm md:text-base border-color"
+          >
+            <h1>Clinic360</h1>
+            <h1><i class="ri-arrow-right-line"></i></h1>
+          </a>
+          <a
+            href="./preview.html?video=https%3A%2F%2Fres.cloudinary.com%2Fdjo8ngr4y%2Fvideo%2Fupload%2Fv1790343890%2Fruggedian_qy1np9.mp4"
+            target="_blank"
+            class="w-full h-[40px] border-b flex justify-between items-center pl-6 md:pl-12 pr-6 md:pr-12 hover:bg-white hover:text-black transition-all duration-200 text-sm md:text-base border-color"
+          >
+            <h1>Ruggedian</h1>
+            <h1><i class="ri-arrow-right-line"></i></h1>
+          </a>
+          <a
+            href="./preview.html?video=https%3A%2F%2Fres.cloudinary.com%2Fdjo8ngr4y%2Fvideo%2Fupload%2Fv1757075003%2Fp2_axejnv.mp4"
+            target="_blank"
+            class="w-full h-[40px] border-b flex justify-between items-center pl-6 md:pl-12 pr-6 md:pr-12 hover:bg-white hover:text-black transition-all duration-200 text-sm md:text-base border-color"
+          >
+            <h1>Boating</h1>
+            <h1><i class="ri-arrow-right-line"></i></h1>
+          </a>
+          <a
+            href="./preview.html?video=https%3A%2F%2Fres.cloudinary.com%2Fdjo8ngr4y%2Fvideo%2Fupload%2Fv1757076277%2FUntitled_video_-_Made_with_Clipchamp_2_bto6xy.mp4"
+            target="_blank"
+            class="w-full h-[40px] border-b flex justify-between items-center pl-6 md:pl-12 pr-6 md:pr-12 hover:bg-white hover:text-black transition-all duration-200 text-sm md:text-base border-color"
+          >
+            <h1>TravelX - Adventure company</h1>
+            <h1><i class="ri-arrow-right-line"></i></h1>
+          </a>
+          <a
+            href="./preview.html?video=https%3A%2F%2Fres.cloudinary.com%2Fdjo8ngr4y%2Fvideo%2Fupload%2Fv1757074082%2Fp1_wzh2nm.mp4"
+            target="_blank"
+            class="w-full h-[40px] border-b flex justify-between items-center pl-6 md:pl-12 pr-6 md:pr-12 hover:bg-white hover:text-black transition-all duration-200 text-sm md:text-base border-color"
+          >
+            <h1>FitPro</h1>
+            <h1><i class="ri-arrow-right-line"></i></h1>
+          </a>
         </div>
       </div>
     </section>
@@ -177,6 +226,82 @@
       Cal.ns["30min"]("ui", {
         hideEventTypeDetails: false,
         layout: "month_view",
+      });
+    </script>
+    <script>
+      let rows = 5;
+      let cols = 7;
+      let total = rows * cols;
+
+      const $container = $("#matrix");
+
+      function buildGrid() {
+        total = rows * cols;
+        $container.empty();
+        $container.css({
+          "grid-template-columns": `repeat(${cols}, 1fr)`,
+          "grid-template-rows": `repeat(${rows}, 1fr)`,
+        });
+
+        for (let i = 0; i < total; i++) {
+          const $wrapper = $(
+            '<div class="border border-[#272727] relative overflow-hidden"></div>',
+          );
+          const $overlay = $(
+            '<div class="hidden-box absolute inset-0 bg-[#CB2957]"></div>',
+          );
+          $wrapper.append($overlay);
+          $container.append($wrapper);
+        }
+
+        const $boxes = $("#matrix > div");
+        const indices = Array.from({ length: total }, (_, i) => i);
+
+        for (let i = indices.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [indices[i], indices[j]] = [indices[j], indices[i]];
+        }
+
+        let counter = 100;
+        if (window.innerWidth < 500) {
+          counter = 50;
+        } else if (window.innerWidth < 800) {
+          counter = 70;
+        }
+
+        indices.forEach((index, i) => {
+          const $overlay = $boxes.eq(index).find("div");
+          setTimeout(() => {
+            $overlay.addClass("show-box");
+          }, i * counter);
+        });
+      }
+
+      function updateLayout() {
+        const width = window.innerWidth;
+        if (width < 500) {
+          rows = 12;
+          cols = 6;
+        } else if (width < 800) {
+          rows = 8;
+          cols = 7;
+        } else {
+          rows = 5;
+          cols = 7;
+        }
+        buildGrid();
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        updateLayout();
+        setTimeout(() => {
+          document.getElementById("matrix-wrapper").style.visibility = "hidden";
+          document.querySelector(".group").style.visibility = "visible";
+        }, 2300);
+      });
+
+      window.addEventListener("resize", () => {
+        updateLayout();
       });
     </script>
   </body>
