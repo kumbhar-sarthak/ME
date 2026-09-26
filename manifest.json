@@ -1,0 +1,20 @@
+{
+  "name": "Sarthak - The whole nine yards",
+  "short_name": "Sarthak",
+  "start_url": "./",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "public/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "public/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
