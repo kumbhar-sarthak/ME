@@ -1,10 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About - Me</title>
-    <link rel="icon" href="/public/fav.jpg" />
+    <link rel="icon" type="image/png" href="public/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="public/favicon.png" />
+    <link rel="manifest" href="manifest.json" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -50,7 +52,9 @@
         transform: scaleX(0);
         transform-origin: left;
         opacity: 0;
-        transition: transform 1s ease, opacity 0.4s ease;
+        transition:
+          transform 1s ease,
+          opacity 0.4s ease;
       }
 
       .show-box {
@@ -98,11 +102,9 @@
             </h1>
 
             <p class="font-light text-sm md:text-base">
-              Hello, I'm student @D. Y. Patil University pursuing my bachelor's
-              degree in Computer Science and Engineering, with that also doing
-              my minor's in data science. Along with my academics I truly
-              building products and providing freelance services to clients. To
-              know more about me look my projects and connect with me. 🙂
+              Helping companies around the world, writing clean code and solving
+              problems. analyzing company, there product and crafting solutions.
+              bringing ideas to life, and also nerd. 🙂
             </p>
 
             <div class="flex space-x-4 absolute bottom-5">
@@ -131,7 +133,7 @@
           duration: 2,
           stagger: 0.08,
           ease: "power4.out",
-        }
+        },
       );
 
       let resizeTimer;
@@ -165,10 +167,10 @@
 
         for (let i = 0; i < total; i++) {
           const $wrapper = $(
-            '<div class="border border-[#272727] relative overflow-hidden"></div>'
+            '<div class="border border-[#272727] relative overflow-hidden"></div>',
           );
           const $overlay = $(
-            '<div class="hidden-box absolute inset-0 bg-[#5F9598]"></div>'
+            '<div class="hidden-box absolute inset-0 bg-[#5F9598]"></div>',
           );
           $wrapper.append($overlay);
           $container.append($wrapper);

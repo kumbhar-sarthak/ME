@@ -20,6 +20,9 @@
       rel="stylesheet"
     />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="icon" type="image/png" href="public/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="public/favicon.png" />
+    <link rel="manifest" href="manifest.json" />
     <style>
       .group {
         visibility: hidden;
@@ -86,7 +89,7 @@
           class="w-full absolute left-0 md:left-10 flex flex-row justify-between md:flex-col pl-6 pr-6 md:pl-0 md:pr-0"
         >
           <h1>Project that I'm worked on.</h1>
-          <span>Local Time - <span id="local-time">10:30</span></span>
+          <span>Local Time: <span id="local-time"></span></span>
         </div>
         <button
           id="book-call"
@@ -188,6 +191,21 @@
       positionInfo();
 
       window.addEventListener("resize", positionInfo);
+
+      function updateLocalTime() {
+        const now = new Date();
+        const options = {
+          timeZone: "Asia/Kolkata",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        };
+        const localTime = now.toLocaleTimeString([], options);
+        document.getElementById("local-time").textContent = localTime;
+      }
+
+      updateLocalTime();
+      setInterval(updateLocalTime, 60000);
     </script>
     <script type="text/javascript">
       (function (C, A, L) {

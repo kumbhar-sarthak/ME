@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Video Preview</title>
+    <link rel="icon" type="image/png" href="public/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="public/favicon.png" />
+    <link rel="manifest" href="manifest.json" />
     <style>
       :root {
         --bg-dark: #0e0e0e;
@@ -111,7 +114,14 @@
       <div class="border-line right" aria-hidden="true"></div>
 
       <div class="preview-frame">
-        <video id="preview-video" autoplay muted loop playsinline controls></video>
+        <video
+          id="preview-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          controls
+        ></video>
       </div>
     </main>
 
@@ -146,19 +156,19 @@
 
         document.documentElement.style.setProperty(
           "--frame-top",
-          `${rect.top}px`
+          `${rect.top}px`,
         );
         document.documentElement.style.setProperty(
           "--frame-bottom",
-          `${rect.bottom}px`
+          `${rect.bottom}px`,
         );
         document.documentElement.style.setProperty(
           "--frame-left",
-          `${rect.left}px`
+          `${rect.left}px`,
         );
         document.documentElement.style.setProperty(
           "--frame-right",
-          `${rect.right}px`
+          `${rect.right}px`,
         );
       }
 
