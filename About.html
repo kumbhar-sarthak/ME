@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0e0e0e" />
     <title>About - Me</title>
     <link rel="icon" type="image/png" href="public/favicon.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="public/favicon.png" />
@@ -13,12 +14,23 @@
       href="https://fonts.googleapis.com/css2?family=Satoshi:wght@100;200;300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css"
+      integrity="sha512-kJlvECunwXftkPwyvHbclArO8wszgBGisiLeuDFwNM8ws+wKIw0sv1os3ClWZOcrEB2eRXULYUsm8OVRGJKwGA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <style>
       :root {
         --bg-dark: #0e0e0e;
         --text-light: #ffffff;
         --text-weight: 400;
         --text-size: 4rem;
+      }
+
+      html {
+        background: var(--bg-dark);
       }
 
       body {
@@ -107,11 +119,77 @@
               bringing ideas to life, and also nerd. 🙂
             </p>
 
-            <div class="flex space-x-4 absolute bottom-5">
-              <a href="./index.html" class="underline">Home</a>
-              <a href="./work.html" class="underline">Work</a>
-              <a href="./contact.html" class="underline">Contact</a>
-            </div>
+            <section class="absolute bottom-5" aria-labelledby="ask-ai-title">
+              <p
+                id="ask-ai-title"
+                class="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-white/60"
+              >
+                (Ask AI About Me)
+              </p>
+              <div class="flex flex-wrap gap-3">
+                <a
+                  href="https://claude.ai/new?q=Examine+the+kumbhar-sarthak.github.io%2FME+and+explain+who+he+is+and+what+he+does%2C+also+explain+which+business+he+can+help+to+built+up+the+online+presence+and+identity.&incognito"
+                  class="flex h-11 w-11 items-center justify-center border border-[#3b3b3b] bg-[#191919] transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Ask Claude"
+                  title="Claude"
+                >
+                  <i class="ri-claude-fill" style="font-size: 20px"></i>
+                </a>
+
+                <a
+                  href="https://www.google.com/search?udm=50&aep=11&q=Examine+the+kumbhar-sarthak.github.io%2FME+and+explain+who+he+is+and+what+he+does%2C+also+explain+which+business+he+can+help+to+built+up+the+online+presence+and+identity.&mstk=AUtExfBgqYGwqvu_6D75HM9_-j1xV0_YpP-b1wTj-xlIKdJe0BPJWvTUGQSt2qNqHVhkIsq3Kdf0xu3GsYJtwyB3w5_IdFd9UR1wm4H9QagmCyZ97IXK3sna8JrY0HiRjm0SwkjUkF04pW4TQphfDs2qI7kk-1WUnI3u7dIUXNjzXcDw2tEVeSpGyUxdAIlVlxPozOO3nPOmX0EigFviUDeqzvZfSPuWCBBQubGBBH_kzugnEdCx1Em4b6dWMg&csuir=1"
+                  class="flex h-11 w-11 items-center justify-center border border-[#3b3b3b] bg-[#191919] transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Ask Gemini"
+                  title="Gemini"
+                >
+                  <i class="ri-gemini-fill" style="font-size: 20px"></i>
+                </a>
+                <a
+                  href="https://chatgpt.com/?q=Examine+the+kumbhar-sarthak.github.io%2FME+and+explain+who+he+is+and+what+he+does%2C+also+explain+which+business+he+can+help+to+built+up+the+online+presence+and+identity.&temporary-chat=true"
+                  class="flex h-11 w-11 items-center justify-center border border-[#3b3b3b] bg-[#191919] transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Ask ChatGPT"
+                  title="ChatGPT"
+                >
+                  <i class="ri-openai-fill" style="font-size: 20px"></i>
+                </a>
+                <a
+                  href="https://grok.com/?q=Examine+the+kumbhar-sarthak.github.io%2FME+and+explain+who+he+is+and+what+he+does%2C+also+explain+which+business+he+can+help+to+built+up+the+online+presence+and+identity."
+                  class="flex h-11 w-11 items-center justify-center border border-[#3b3b3b] bg-[#191919] transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Ask Grok AI"
+                  title="Grok AI"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="20"
+                    height="20"
+                    fill="rgba(255,255,255,1)"
+                  >
+                    <path
+                      d="M4.93945 4.96094C7.86569 2.03348 12.1756 1.29525 15.7754 2.77832C16.5718 3.07449 17.2661 3.49585 17.8076 3.8877L14.8018 5.27734C12.003 4.10183 8.79674 4.9012 6.83984 6.86035C4.27606 9.42495 3.69417 13.8137 6.48047 16.7822L6.75781 17.0664L0.124023 23C1.99897 21.0271 3.89507 18.5729 2.75977 15.8096C1.23981 12.1122 2.12498 7.77906 4.93945 4.96094ZM23.9004 0.0996094C21.6357 3.27424 20.7155 5.48855 21.7031 9.74023L21.6963 9.7334C22.4495 12.9342 21.6438 16.4839 19.043 19.0879C15.7641 22.3728 10.5173 23.1041 6.19629 20.1475L9.20898 18.751C11.9667 19.8351 14.984 19.3584 17.1523 17.1875C19.3206 15.0165 19.8074 11.8547 18.7178 9.22363C18.5107 8.72479 17.8897 8.599 17.4551 8.91992L8.58984 15.4717L21.2891 2.70117V2.71191L23.9004 0.0996094Z"
+                    ></path>
+                  </svg>
+                </a>
+                <a
+                  href="https://www.perplexity.ai/search?q=Examine+the+kumbhar-sarthak.github.io%2FME+and+explain+who+he+is+and+what+he+does%2C+also+explain+which+business+he+can+help+to+built+up+the+online+presence+and+identity."
+                  class="flex h-11 w-11 items-center justify-center border border-[#3b3b3b] bg-[#191919] transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Ask Perplexity"
+                  title="Perplexity"
+                >
+                  <i class="ri-perplexity-fill" style="font-size: 20px"></i>
+                </a>
+              </div>
+            </section>
           </div>
 
           <div
